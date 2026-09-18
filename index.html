@@ -1,87 +1,77 @@
 <!doctype html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#080305" />
-  <meta name="description" content="Một món quà nhỏ gửi tới những người phụ nữ tuyệt vời nhân ngày 20/10." />
-  <title>20/10 — Gửi những người phụ nữ tuyệt vời</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#070611">
+  <meta name="description" content="Một ngân hà yêu thương dành tặng những người phụ nữ tuyệt vời. Chạm vào những vì sao và khám phá lời chúc 20/10 của bạn.">
+  <title>20/10 · Một ngân hà dành tặng bạn</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23070611'/%3E%3Cpath d='m32 7 6 18 19 7-19 6-6 19-7-19L7 32l18-7z' fill='%23e9cfa8'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23090305'/%3E%3Cpath d='M32 49C13 38 15 21 24 19c5-1 8 3 8 7 0-4 3-8 8-7 9 2 11 19-8 30z' fill='%23cda85e'/%3E%3C/svg%3E" />
-  <style>
-    :root{--ink:#070204;--wine:#6e0719;--ruby:#b10d2d;--gold:#d8b66e;--cream:#fff8e9;--muted:#cfbfc0}
-    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--ink);color:var(--cream);font-family:'Be Vietnam Pro',sans-serif;overflow-x:hidden}
-    body::before{content:"";position:fixed;inset:0;z-index:-3;background:radial-gradient(circle at 50% 12%,rgba(177,13,45,.28),transparent 34%),radial-gradient(circle at 10% 80%,rgba(110,7,25,.3),transparent 35%),linear-gradient(145deg,#030102 0%,#120307 45%,#050102 100%)}
-    .grain{position:fixed;inset:0;pointer-events:none;z-index:20;opacity:.1;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.45'/%3E%3C/svg%3E")}
-    .gold-line{position:fixed;inset:18px;border:1px solid rgba(216,182,110,.32);pointer-events:none;z-index:10}.gold-line::before,.gold-line::after{content:"◆";position:absolute;color:var(--gold);font-size:10px;top:-8px}.gold-line::before{left:12%}.gold-line::after{right:12%}
-    .intro{position:fixed;inset:0;display:grid;place-items:center;z-index:30;background:radial-gradient(circle at center,#2a0710 0,#080204 62%);transition:opacity .9s,visibility .9s}.intro.hidden{opacity:0;visibility:hidden}.intro-card{text-align:center;padding:42px 26px;max-width:620px}.eyebrow{font-size:.76rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);margin:0 0 24px}.seal{width:106px;height:106px;margin:0 auto 30px;border:1px solid rgba(216,182,110,.7);border-radius:50%;display:grid;place-items:center;box-shadow:0 0 0 8px rgba(216,182,110,.05),0 0 55px rgba(177,13,45,.35);font-family:'Playfair Display',serif;font-size:2rem;color:var(--gold);animation:breathe 2.8s ease-in-out infinite}
-    .intro h1,.hero h1,.quote{font-family:'Playfair Display',serif}.intro h1{font-size:clamp(2.35rem,7vw,5.2rem);line-height:1.02;margin:0 0 20px}.intro p{color:var(--muted);font-weight:300;line-height:1.8;margin:0 auto 30px;max-width:460px}
-    button{font:inherit}.open-btn,.music-btn,.wish-btn{border:1px solid rgba(216,182,110,.65);color:var(--cream);background:linear-gradient(135deg,rgba(177,13,45,.8),rgba(79,5,20,.9));border-radius:999px;cursor:pointer;box-shadow:0 14px 45px rgba(120,5,31,.28);transition:.3s}.open-btn{padding:15px 26px}.open-btn:hover,.wish-btn:hover{transform:translateY(-3px);box-shadow:0 18px 55px rgba(177,13,45,.38)}
-    .music-btn{position:fixed;right:30px;top:30px;width:46px;height:46px;z-index:15;background:rgba(12,3,6,.72);backdrop-filter:blur(12px)}
-    main{opacity:0;transform:translateY(16px);transition:1.2s ease}.ready main{opacity:1;transform:none}.hero{min-height:100svh;display:grid;place-items:center;text-align:center;padding:88px 24px 60px;position:relative}.hero-inner{max-width:1000px}.date{display:inline-flex;align-items:center;gap:14px;color:var(--gold);letter-spacing:.24em;font-size:.83rem}.date::before,.date::after{content:"";width:50px;height:1px;background:linear-gradient(90deg,transparent,var(--gold))}.date::after{transform:rotate(180deg)}
-    .hero h1{font-size:clamp(3.2rem,10vw,8.5rem);line-height:.86;margin:28px 0 30px;text-shadow:0 10px 50px rgba(110,7,25,.6)}.hero h1 span{display:block;color:transparent;-webkit-text-stroke:1px rgba(255,248,233,.75);font-style:italic;font-size:.7em}.hero-copy{max-width:660px;margin:auto;color:#e5d8d6;font-size:clamp(1rem,2vw,1.22rem);line-height:1.9;font-weight:300}
-    .orb{position:absolute;border-radius:50%;filter:blur(1px);pointer-events:none}.orb.one{width:340px;height:340px;border:1px solid rgba(216,182,110,.14);left:-150px;top:20%}.orb.two{width:230px;height:230px;border:1px solid rgba(177,13,45,.3);right:-80px;bottom:12%}
-    .scroll{position:absolute;bottom:35px;font-size:.7rem;color:var(--gold);letter-spacing:.24em;text-transform:uppercase;writing-mode:vertical-rl}.scroll::after{content:"";display:block;width:1px;height:60px;background:linear-gradient(var(--gold),transparent);margin:12px auto}
-    .section{padding:110px 24px}.section-inner{max-width:1100px;margin:auto}.section-head{text-align:center;max-width:700px;margin:0 auto 58px}.section-head h2{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,5vw,4.5rem);margin:12px 0}.section-head p{color:var(--muted);line-height:1.8}
-    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.card{position:relative;min-height:330px;padding:34px 28px;border:1px solid rgba(216,182,110,.2);border-radius:5px;background:linear-gradient(160deg,rgba(255,255,255,.055),rgba(255,255,255,.012));backdrop-filter:blur(12px);overflow:hidden;transition:.45s}.card:hover{transform:translateY(-8px);border-color:rgba(216,182,110,.55)}.card::after{content:"";position:absolute;width:150px;height:150px;border-radius:50%;background:rgba(177,13,45,.2);filter:blur(45px);right:-60px;bottom:-60px}.num{font-family:'Playfair Display',serif;color:var(--gold);font-size:1.1rem}.card h3{font-family:'Playfair Display',serif;font-size:2rem;margin:70px 0 18px}.card p{color:var(--muted);line-height:1.8;font-size:.95rem}
-    .wish{padding:0 24px 120px}.wish-stage{max-width:980px;margin:auto;text-align:center;padding:clamp(50px,9vw,100px) clamp(22px,7vw,80px);border:1px solid rgba(216,182,110,.28);position:relative;background:radial-gradient(circle at 50% 0,rgba(177,13,45,.25),transparent 55%),rgba(255,255,255,.018)}.rose{font-size:3.5rem;filter:drop-shadow(0 10px 22px rgba(177,13,45,.7));display:block;margin-bottom:24px}.quote{font-size:clamp(2rem,5vw,4.5rem);line-height:1.25;margin:0 0 28px}.quote em{color:var(--gold)}.wish-copy{max-width:660px;margin:0 auto 34px;color:#dbcac8;line-height:1.9}.wish-btn{padding:14px 24px}.secret{display:grid;grid-template-rows:0fr;transition:.8s}.secret>div{overflow:hidden}.secret.open{grid-template-rows:1fr}.secret p{margin:32px auto 0;padding-top:26px;border-top:1px solid rgba(216,182,110,.22);max-width:650px;color:var(--cream);line-height:1.9}
-    footer{text-align:center;padding:34px 24px 58px;color:#927d7e;font-size:.78rem;letter-spacing:.12em}.spark{position:fixed;top:-30px;color:var(--gold);pointer-events:none;z-index:12;animation:fall linear forwards;text-shadow:0 0 10px currentColor}
-    @keyframes breathe{50%{transform:scale(1.06);box-shadow:0 0 0 13px rgba(216,182,110,.025),0 0 70px rgba(177,13,45,.5)}}@keyframes fall{to{transform:translate3d(var(--drift),110vh,0) rotate(480deg);opacity:.05}}
-    @media(max-width:760px){.gold-line{inset:10px}.music-btn{right:20px;top:20px}.cards{grid-template-columns:1fr}.card{min-height:260px}.card h3{margin-top:42px}.section{padding:80px 18px}.hero{padding-inline:18px}.scroll{display:none}.date::before,.date::after{width:22px}.wish{padding-inline:14px}.hero h1{line-height:.94}}
-    @media(prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto!important;transition-duration:.01ms!important}.spark{display:none}}
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/styles.css">
+  <script type="importmap">{"imports":{"three":"./vendor/three.module.min.js"}}</script>
+  <script type="module" src="./js/app.js"></script>
 </head>
 <body>
-  <div class="grain"></div><div class="gold-line"></div>
-  <section class="intro" id="intro" aria-label="Mở thiệp chúc mừng">
-    <div class="intro-card">
-      <p class="eyebrow">Một món quà nhỏ</p><div class="seal">20·10</div>
-      <h1>Dành tặng<br>phái đẹp</h1>
-      <p>Chạm để mở lời chúc được gửi bằng tất cả sự trân trọng.</p>
-      <button class="open-btn" id="openBtn">Mở món quà ✦</button>
-    </div>
-  </section>
-  <button class="music-btn" id="musicBtn" aria-label="Bật hoặc tắt âm thanh" title="Âm thanh">♪</button>
-  <main>
-    <section class="hero">
-      <span class="orb one"></span><span class="orb two"></span>
-      <div class="hero-inner">
-        <div class="date">Vietnamese Women's Day</div>
-        <h1>20 THÁNG 10 <span>Gửi những đóa hoa đẹp nhất</span></h1>
-        <p class="hero-copy">Không chỉ hôm nay, mong rằng mỗi ngày bạn đều được yêu thương, được lắng nghe và tự do tỏa sáng theo cách riêng của mình.</p>
-      </div><div class="scroll">Cuộn xuống</div>
-    </section>
-    <section class="section">
-      <div class="section-inner">
-        <div class="section-head"><p class="eyebrow">Ba lời gửi trao</p><h2>Vì bạn luôn xứng đáng</h2><p>Mỗi người phụ nữ đều mang một vẻ đẹp, một câu chuyện và một sức mạnh không thể thay thế.</p></div>
-        <div class="cards">
-          <article class="card"><span class="num">01</span><h3>Được yêu thương</h3><p>Chúc bạn luôn được bao quanh bởi những người chân thành, biết trân trọng từng điều nhỏ bé bạn trao đi.</p></article>
-          <article class="card"><span class="num">02</span><h3>Được rực rỡ</h3><p>Chúc mọi nỗ lực đều nở hoa, mọi ước mơ đều có đường để tới, và nụ cười luôn ở lại thật lâu.</p></article>
-          <article class="card"><span class="num">03</span><h3>Được là chính mình</h3><p>Chúc bạn đủ dịu dàng để yêu cuộc sống, đủ mạnh mẽ để bảo vệ lựa chọn và đủ tự tin để bước tiếp.</p></article>
+  <a class="skip-link" href="#open-letter">Đến lời chúc</a>
+  <div class="space-wash" aria-hidden="true"></div>
+  <header class="site-header">
+    <a class="wordmark" href="./" aria-label="20 tháng 10 — Trang chủ"><span class="brand-star" aria-hidden="true">✧</span>20<span class="brand-dot">.</span>10</a>
+    <p class="header-note">NGÀY PHỤ NỮ VIỆT NAM</p>
+    <button class="sound-button" id="sound-button" type="button" aria-pressed="false" aria-label="Bật nhạc nền">
+      <span class="equalizer" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span id="sound-label">Bật nhạc</span>
+    </button>
+  </header>
+  <main id="main">
+    <section class="experience" aria-label="Ngân hà yêu thương">
+      <div class="hero-copy" id="hero-copy">
+        <p class="eyebrow"><span></span> GỬI MỘT NỬA TUYỆT VỜI CỦA THẾ GIỚI</p>
+        <h1>Cả một<br><em>ngân hà,</em><br>dành tặng bạn<span class="title-star" aria-hidden="true">✦</span></h1>
+        <p class="hero-description" id="hero-description">Giữa hàng triệu vì sao, bạn vẫn tỏa sáng<br class="desktop-break"> theo cách của riêng mình.</p>
+        <div class="hero-actions">
+          <button id="open-letter" class="button-primary" type="button"><span>Mở lời chúc của bạn</span><span aria-hidden="true">↗</span></button>
+          <button id="love-button" class="button-text" type="button" aria-pressed="false"><span aria-hidden="true">♡</span> <span id="love-label">Gửi ngàn yêu thương</span></button>
+        </div>
+        <p class="small-dedication">Không chỉ hôm nay. Mà là mỗi ngày.</p>
+      </div>
+      <div class="universe" id="universe">
+        <canvas id="galaxy-canvas" tabindex="0" role="img" aria-label="Ngân hà 3D. Kéo chuột hoặc vuốt để xoay, cuộn hoặc chụm hai ngón để thu phóng. Phím mũi tên để xoay, cộng trừ để thu phóng, R để đặt lại."></canvas>
+        <div id="star-labels" class="star-labels" aria-label="Những ngôi sao mang lời chúc"></div>
+        <div class="galaxy-caption"><span class="caption-rule"></span><span id="galaxy-caption-text">Mỗi vì sao, một điều tốt đẹp.</span></div>
+        <p id="scene-status" class="scene-status" role="status">Đang thắp sáng những vì sao…</p>
+      </div>
+      <div class="experience-footer">
+        <div class="dedication-stamp"><span class="stamp-date">20 / 10</span><span>Một ngân hà yêu thương<br>gửi đến bạn.</span></div>
+        <p class="gesture-hint" id="gesture-hint"><span aria-hidden="true">⌁</span> Kéo để xoay · Chạm sao để đọc lời chúc</p>
+        <div class="scene-controls" aria-label="Điều khiển ngân hà">
+          <button id="motion-button" type="button" aria-label="Tạm dừng chuyển động" aria-pressed="false" title="Tạm dừng chuyển động">Ⅱ</button>
+          <button id="reset-button" type="button" aria-label="Đặt lại góc nhìn" title="Đặt lại góc nhìn">↺</button>
+          <label class="quality-control"><span class="sr-only">Chất lượng hiệu ứng</span><select id="quality-select" aria-label="Chất lượng hiệu ứng"><option value="auto">Tự động</option><option value="low">Nhẹ</option><option value="high">Chi tiết</option></select></label>
         </div>
       </div>
     </section>
-    <section class="wish">
-      <div class="wish-stage"><span class="rose" aria-hidden="true">🌹</span><p class="eyebrow">Happy Women's Day</p>
-        <h2 class="quote">Thế giới đẹp hơn<br>vì có <em>bạn</em>.</h2>
-        <p class="wish-copy">Nhân ngày Phụ nữ Việt Nam 20/10, xin gửi tới tất cả những người phụ nữ tuyệt vời lời chúc bình an, hạnh phúc và thật nhiều yêu thương.</p>
-        <button class="wish-btn" id="wishBtn">Nhận lời chúc đặc biệt</button>
-        <div class="secret" id="secret"><div><p>Chúc bạn không chỉ có một ngày 20/10 đáng nhớ, mà còn có 365 ngày được nâng niu, tôn trọng và sống trọn vẹn với điều mình yêu. Bạn chính là món quà quý giá của cuộc đời. ✦</p></div></div>
-      </div>
+    <section class="wishes-strip" aria-label="Chọn lời chúc">
+      <div class="strip-intro"><span class="eyebrow">NHỮNG ĐIỀU GỬI TRAO</span><p>Bạn luôn xứng đáng với…</p></div>
+      <div class="wish-shortcuts" id="wish-shortcuts"></div>
     </section>
   </main>
-  <footer>GỬI ĐẾN MỘT NỬA TUYỆT VỜI CỦA THẾ GIỚI • 20.10</footer>
-  <script>
-    const intro=document.querySelector('#intro'),openBtn=document.querySelector('#openBtn'),musicBtn=document.querySelector('#musicBtn'),wishBtn=document.querySelector('#wishBtn'),secret=document.querySelector('#secret');
-    let audioCtx=null,soundOn=true,timer=null;
-    function tone(freq,at,duration=.7,volume=.025){if(!soundOn||!audioCtx)return;const o=audioCtx.createOscillator(),g=audioCtx.createGain();o.type='sine';o.frequency.value=freq;g.gain.setValueAtTime(0,at);g.gain.linearRampToValueAtTime(volume,at+.04);g.gain.exponentialRampToValueAtTime(.0001,at+duration);o.connect(g).connect(audioCtx.destination);o.start(at);o.stop(at+duration)}
-    function melody(){if(!audioCtx)return;const now=audioCtx.currentTime;[392,493.88,587.33,493.88].forEach((n,i)=>tone(n,now+i*.34,1.2,.018))}
-    function shower(count=28){for(let i=0;i<count;i++){const s=document.createElement('span');s.className='spark';s.textContent=i%5===0?'♥':'✦';s.style.left=Math.random()*100+'vw';s.style.animationDuration=4+Math.random()*5+'s';s.style.animationDelay=Math.random()*1.6+'s';s.style.setProperty('--drift',(Math.random()*180-90)+'px');s.style.fontSize=8+Math.random()*14+'px';document.body.append(s);setTimeout(()=>s.remove(),10500)}}
-    openBtn.addEventListener('click',()=>{audioCtx=new(window.AudioContext||window.webkitAudioContext)();melody();timer=setInterval(melody,1500);intro.classList.add('hidden');document.body.classList.add('ready');shower(34)});
-    musicBtn.addEventListener('click',()=>{soundOn=!soundOn;musicBtn.textContent=soundOn?'♪':'×';musicBtn.setAttribute('aria-label',soundOn?'Tắt âm thanh':'Bật âm thanh');if(soundOn){if(!audioCtx)audioCtx=new(window.AudioContext||window.webkitAudioContext)();melody()}});
-    wishBtn.addEventListener('click',()=>{secret.classList.toggle('open');wishBtn.textContent=secret.classList.contains('open')?'Giữ lời chúc trong tim':'Nhận lời chúc đặc biệt';if(secret.classList.contains('open')){shower(46);melody()}});
-  </script>
+  <footer class="site-footer"><p>Chúc mừng ngày Phụ nữ Việt Nam <span>✧</span> 20.10</p><p id="footer-message">Mong bạn luôn được yêu thương, theo cách dịu dàng nhất.</p></footer>
+  <dialog id="wish-dialog" aria-labelledby="wish-title" aria-describedby="wish-body">
+    <div class="letter-card">
+      <button class="dialog-close" id="close-letter" type="button" aria-label="Đóng lời chúc">×</button>
+      <div class="letter-top"><span class="eyebrow">TỪ NGÂN HÀ, VỚI YÊU THƯƠNG</span><span id="wish-number">01 / 06</span></div>
+      <span class="letter-star" aria-hidden="true">✧</span>
+      <p class="letter-recipient" id="letter-recipient">Gửi bạn, người phụ nữ tuyệt vời.</p>
+      <h2 id="wish-title">Được yêu thương</h2>
+      <p id="wish-body"></p>
+      <p class="letter-closing" id="letter-closing"></p>
+      <div class="letter-bottom"><span class="letter-signature">Happy 20/10</span><div class="letter-nav"><button id="previous-wish" type="button" aria-label="Lời chúc trước">←</button><button id="next-wish" type="button" aria-label="Lời chúc tiếp theo">→</button></div></div>
+      <div class="letter-dots" id="letter-dots" aria-label="Chọn lời chúc"></div>
+    </div>
+  </dialog>
+  <p class="toast" id="toast" role="status" hidden></p>
+  <noscript><div class="no-script">Chúc bạn một ngày 20/10 ngập tràn yêu thương, bình an và hạnh phúc. Hãy bật JavaScript để khám phá ngân hà và các lời chúc.</div></noscript>
 </body>
 </html>
