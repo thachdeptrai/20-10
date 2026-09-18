@@ -12,7 +12,7 @@ Web chúc mừng Ngày Phụ nữ Việt Nam với ngân hà 3D tương tác b�
 - Nhạc ambient tự tạo bằng Web Audio, chỉ phát khi bấm **Bật nhạc**; không tải MP3 bên ngoài.
 - Tạm dừng chuyển động, đặt lại góc nhìn và chọn chất lượng Tự động / Nhẹ / Chi tiết.
 - Tự dừng vẽ khi tab bị ẩn hoặc cảnh nằm ngoài màn hình. Tôn trọng cài đặt giảm chuyển động của thiết bị.
-- Khi WebGL không hoạt động, trang vẫn hiện nội dung và mở được toàn bộ lời chúc.
+- Khi WebGL không hoạt động, tự chuyển sang ngân hà Canvas 2D với phép chiếu phối cảnh: vẫn xoay, thu phóng, kết thành trái tim và mở lời chúc. Chế độ dự phòng dùng 4.800–9.000 hạt để nhẹ hơn.
 
 ## Các file
 
@@ -23,6 +23,7 @@ Web chúc mừng Ngày Phụ nữ Việt Nam với ngân hà 3D tương tác b�
 | `js/config.js` | Toàn bộ lời chúc, người nhận, bảng màu, số lượng sao |
 | `js/app.js` | Gắn giao diện với cảnh 3D, điều khiển thiệp và trạng thái |
 | `js/galaxy.js` | Cảnh Three.js, GPU shaders, ngân hà, trái tim và camera |
+| `js/galaxy-fallback.js` | Ngân hà dự phòng khi thiết bị không mở được WebGL |
 | `js/audio.js` | Giai điệu ambient, bật/tắt và tạm dừng âm thanh khi ẩn tab |
 | `vendor/three.module.min.js` | Three.js 0.170.0, lưu cùng web để không phụ thuộc CDN lúc chạy |
 | `vendor/OrbitControls.js` | Điều khiển camera, cùng phiên bản với Three.js |

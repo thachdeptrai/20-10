@@ -127,16 +127,26 @@ function unavailable(reason) {
 
 // UI/lời chúc không phụ thuộc WebGL: lỗi GPU hay module 3D không khóa trang.
 async function boot() {
+  const options = { canvas:$('galaxy-canvas'), container:$('universe'), config:CONFIG.galaxy,
+    anchors, reducedMotion:motionPreference.matches, onUnavailable:unavailable };
   try {
     const { Galaxy } = await import('./galaxy.js');
-    galaxy = new Galaxy({ canvas:$('galaxy-canvas'), container:$('universe'), config:CONFIG.galaxy,
-      anchors, reducedMotion:motionPreference.matches, onUnavailable:unavailable });
-    galaxy.setPaused(paused || dialog.open);
-    $('scene-status').hidden = true;
+    galaxy = new Galaxy(options);
   } catch (error) {
-    console.error('Khởi tạo ngân hà thất bại:',error);
-    unavailable('init');
+    console.info('Dùng phiên bản ngân hà tương thích:',error.message);
+    try {
+      const { Galaxy } = await import('./galaxy-fallback.js');
+      // Canvas từng nhận WebGL không đổi sang context 2D: thay bằng canvas sạch.
+      const canvas = options.canvas.cloneNode(false);
+      options.canvas.replaceWith(canvas); options.canvas = canvas;
+      galaxy = new Galaxy(options);
+    } catch (fallbackError) {
+      console.error('Khởi tạo ngân hà thất bại:',fallbackError);
+      unavailable('init'); return;
+    }
   }
+  galaxy.setPaused(paused || dialog.open);
+  $('scene-status').hidden = true;
 }
 boot();
 
