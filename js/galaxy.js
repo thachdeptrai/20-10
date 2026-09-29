@@ -161,6 +161,16 @@ export class Galaxy {
     (type === 'background' ? this.scene : this.group).add(points);
   }
 
+  setProgress(progress) {
+    this.progress = Math.max(0, Math.min(3, Number(progress)||0));
+    this.resources.forEach(item => {
+      if (!item.material?.uniforms?.uOpacity) return;
+      const base = item.type === 'dust' ? 0.14 : item.type === 'background' ? 0.85 : 1.05;
+      item.material.uniforms.uOpacity.value = base * (0.76 + this.progress * 0.08);
+    });
+    this.requestRender();
+  }
+
   setQuality(mode) {
     this.qualityMode = mode;
     const mobile = matchMedia('(max-width: 760px)').matches;

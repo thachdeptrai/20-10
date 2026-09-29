@@ -57,6 +57,8 @@ export class Galaxy {
     this.resetView(); this.setQuality('auto');
   }
 
+  setProgress(progress) { this.progress=Math.max(0,Math.min(3,Number(progress)||0)); this.requestRender(); }
+
   setQuality(mode) {
     let seed=this.config.seed;
     const random=() => { seed=(Math.imul(seed,1664525)+1013904223)>>>0; return seed/4294967296; };
@@ -108,7 +110,8 @@ export class Galaxy {
     this.cp=Math.cos(this.pitch*(1-m)); this.sp=Math.sin(this.pitch*(1-m));
     ctx.setTransform(this.dpr,0,0,this.dpr,0,0); ctx.clearRect(0,0,this.width,this.height);
     ctx.globalCompositeOperation='lighter'; ctx.fillStyle='#dcd3ff';
-    for(const p of this.background){ctx.globalAlpha=0.25+0.2*Math.sin(this.time+p.phase);ctx.fillRect(p.x*this.width,p.y*this.height,p.size,p.size);}
+    const progressGlow=0.76+(this.progress||0)*0.08;
+    for(const p of this.background){ctx.globalAlpha=(0.25+0.2*Math.sin(this.time+p.phase))*progressGlow;ctx.fillRect(p.x*this.width,p.y*this.height,p.size,p.size);}
     this.points.forEach((points,color) => {
       ctx.fillStyle=m>0.5?'#f8afce':this.config.colors[color];
       for(const p of points) {
