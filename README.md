@@ -23,7 +23,7 @@ Hiệu ứng có chiều sâu và phản hồi chuyển động/âm thanh; đây
 
 ## Chạy và cập nhật
 
-Đây là web tĩnh, **không có bước build**. Thư viện Three.js 0.170.0 được giữ trong `vendor`, không tải CDN lúc chạy. Font hệ thống hỗ trợ tiếng Việt; không có request font hoặc analytics bên ngoài.
+Đây là web tĩnh, **không có bước build**. Thư viện Three.js 0.170.0 được giữ trong `vendor`, không tải CDN lúc chạy. Typography dùng **Be Vietnam Pro** cho nội dung và **Playfair Display** cho tiêu đề/thư; cả hai có bộ ký tự tiếng Việt và dùng `display=swap`. Nếu Google Fonts bị chặn hoặc mất mạng, giao diện tự rơi về Segoe UI/Arial và Georgia/Noto Serif nên nội dung vẫn đọc được. Không có analytics.
 
 ```sh
 python -m http.server 8080
@@ -55,18 +55,19 @@ Bản nháp chỉ nằm trên trình duyệt hiện tại với khóa `20-10-let
 | `js/galaxy-fallback.js` | Renderer dự phòng Canvas 2D |
 | `js/audio.js` | Âm thanh ambient theo thao tác người dùng |
 | `tests/gift.test.mjs` | Kiểm tra link UTF-8, schema, giới hạn và đường dẫn |
+| `tests/font.test.mjs` | Chống regress font tiếng Việt, cache key và font của thiệp PNG |
 
 ## Kiểm tra
 
 Với Node.js 22+:
 
 ```sh
-node --test tests/gift.test.mjs
+node --test tests/*.test.mjs
 ```
 
 Kiểm tra thủ công trước khi xuất bản:
 
-1. Desktop và mobile: không tràn ngang, các nút chạm được, đọc được tiếng Việt.
+1. Desktop và mobile: không tràn ngang, các nút chạm được, dấu tiếng Việt hiển thị đúng. Thử thêm một lần khi chặn Google Fonts để xác nhận fallback hệ thống vẫn đẹp và không nhảy bố cục quá mức.
 2. Mở lá thư, ba ngôi sao, lời hẹn; Esc và nút đóng trả focus hợp lý.
 3. Tạo quà có tiếng Việt/emoji, xem trước; mở link ở cửa sổ riêng.
 4. Bấm điều hướng đến các mục trong link nhận quà: nội dung cá nhân vẫn giữ nguyên.
