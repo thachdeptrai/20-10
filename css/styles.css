@@ -8,3 +8,5 @@ dialog{border:1px solid #c4c5a52e;border-radius:7px;color:var(--text);padding:0;
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}.envelope-stage{transform:translateX(-50%) rotate(-7deg)}}
 
 .preview-paper[data-theme=rose]{background:linear-gradient(125deg,#f3e5df,#dec6c0)}.preview-paper[data-theme=blue]{background:linear-gradient(125deg,#e5eef0,#c2d5da)}
+
+.hero-art{overflow:clip}.hero-description,#promise-description{white-space:pre-line}

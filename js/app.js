@@ -1,7 +1,7 @@
-import { CONFIG } from './config.js?v=2.0.0';
-import { AmbientAudio } from './audio.js?v=2.0.0';
-import { SAMPLE, TEMPLATES, NOTE_TITLES, NOTE_LABELS, NOTE_TEASERS, THEMES, encodeGift, decodeGift, validateGift, giftLink } from './gift.js?v=2.0.0';
-import { downloadPostcard } from './postcard.js?v=2.0.0';
+import { CONFIG } from './config.js?v=2.0.1';
+import { AmbientAudio } from './audio.js?v=2.0.1';
+import { SAMPLE, TEMPLATES, NOTE_TITLES, NOTE_LABELS, NOTE_TEASERS, THEMES, encodeGift, decodeGift, validateGift, giftLink } from './gift.js?v=2.0.1';
+import { downloadPostcard } from './postcard.js?v=2.0.1';
 
 const $=id=>document.getElementById(id);
 const audio=new AmbientAudio();
@@ -13,8 +13,8 @@ let galaxy=null, paused=motionPreference.matches, love=false, currentMemory=0;
 let toastTimer,openingTimer,draftTimer,previousFocus=null,opening=false,templatePending=false;
 const readMemories=new Set();
 const initialHero=$('hero-title').cloneNode(true);
-const defaultHeroDescription=$('hero-description').textContent;
-const defaultPromiseDescription=$('promise-description').textContent;
+const defaultHeroDescription='Cảm ơn vì đã có mặt trong cuộc đời này.\nMột lá thư nhỏ, dành cho người thật đặc biệt.';
+const defaultPromiseDescription='Một cuộc gọi không vội. Một bữa cơm cùng nhau.\nMột lần lắng nghe đến hết câu.';
 
 // Section navigation must not replace the fragment that carries a received gift.
 document.querySelectorAll('a[href^="#"]').forEach(link=>link.addEventListener('click',event=>{
@@ -181,7 +181,7 @@ async function useFallback(){
   if(fallbackPromise)return fallbackPromise;
   fallbackPromise=(async()=>{
     galaxy?.dispose();galaxy=null;
-    const {Galaxy}=await import('./galaxy-fallback.js?v=2.0.0');
+    const {Galaxy}=await import('./galaxy-fallback.js?v=2.0.1');
     const canvas=$('galaxy-canvas').cloneNode(false);$('galaxy-canvas').replaceWith(canvas);
     galaxy=new Galaxy({canvas,container:$('universe'),config:CONFIG.galaxy,anchors,reducedMotion:motionPreference.matches});
     galaxy.setQuality($('quality-select').value);galaxy.setLove(love);syncMotion();
@@ -193,7 +193,7 @@ async function useFallback(){
 }
 async function boot(){
   try{
-    const {Galaxy}=await import('./galaxy.js?v=2.0.0');
+    const {Galaxy}=await import('./galaxy.js?v=2.0.1');
     galaxy=new Galaxy({canvas:$('galaxy-canvas'),container:$('universe'),config:CONFIG.galaxy,anchors,reducedMotion:motionPreference.matches,onUnavailable:reason=>{if(reason)queueMicrotask(useFallback);}});
     document.body.dataset.renderer='webgl';$('scene-status').hidden=true;galaxy.setLove(love);syncMotion();
   }catch{await useFallback();}

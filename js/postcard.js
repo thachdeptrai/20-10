@@ -1,4 +1,4 @@
-import { validateGift, NOTE_LABELS } from './gift.js?v=2.0.0';
+import { validateGift, NOTE_LABELS } from './gift.js?v=2.0.1';
 const PALETTES = {gold:['#e4c48f','#0d2629'],rose:['#e7b5ae','#2b202b'],blue:['#b5d4de','#122b3b']};
 // Wrap by measured glyph width, including very long words and Vietnamese.
 function linesFor(ctx,text,width) {
