@@ -18,11 +18,13 @@ const vertexShader = `
     float angle = uTime * 0.14 / (1.0 + radius * 0.24) * uRotate;
     float s = sin(angle), c = cos(angle);
     vec3 orbit = vec3(position.x*c-position.z*s, position.y, position.x*s+position.z*c);
-    vec3 p = mix(orbit, aHeart, uMorph);
+    // A very slow breath adds depth to the heart without flashes.
+    float breath = 1.0 + sin(uTime * 1.4) * 0.012;
+    vec3 p = mix(orbit, aHeart * breath, uMorph);
     vec4 viewPosition = modelViewMatrix * vec4(p, 1.0);
     gl_Position = projectionMatrix * viewPosition;
     gl_PointSize = clamp(aSize * uSize * uPixelRatio * 90.0 / max(1.0, -viewPosition.z), 1.0, 64.0);
-    vColor = mix(color, mix(vec3(1.0,0.3,0.55),vec3(1.0,0.8,0.72),aPhase/6.283),uMorph*0.75);
+    vColor = mix(color, mix(vec3(1.0,0.58,0.38),vec3(1.0,0.88,0.66),aPhase/6.283),uMorph*0.65);
     vTwinkle = 0.75 + 0.25 * sin(uTime * 1.1 + aPhase);
   }
 `;
@@ -92,8 +94,13 @@ export class Galaxy {
     }, { threshold: 0.01 });
     this.intersectionObserver.observe(container);
     this.setQuality('auto'); this.resetView(true); this.resize();
-    this.renderer.compile(this.scene, this.camera);
-    this.renderer.render(this.scene, this.camera);
+    try {
+      this.renderer.compile(this.scene, this.camera);
+      this.renderer.render(this.scene, this.camera);
+    } catch (error) {
+      this.dispose();
+      throw error;
+    }
     this.syncLoop();
   }
 

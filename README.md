@@ -1,111 +1,80 @@
-# 20/10 — Một ngân hà dành tặng bạn
+# 20.10 — Gửi người tôi thương · v2
 
-Web chúc mừng Ngày Phụ nữ Việt Nam với ngân hà 3D tương tác bằng Three.js/WebGL. Giao diện tiếng Việt, lời chúc dành cho tất cả phụ nữ, không cần ảnh cá nhân hay backend.
+**The Letter Edition**: một lá thư riêng, ba điều trân trọng và một lời hẹn thật sự. Ngân hà 3D trở thành không gian để mở món quà, đọc những lời nhắn và gửi yêu thương đến một người cụ thể.
 
-## Trải nghiệm
+Trang: https://thachdeptrai.github.io/20-10/
 
-- Ngân hà 5 nhánh xoắn, ba lớp sao/bụi/sao nền, màu vàng champagne → hồng → tím → xanh.
-- Kéo chuột hoặc một ngón tay để xoay. Lăn chuột hoặc chụm hai ngón để thu phóng.
-- Chạm vào một ngôi sao có nhãn để mở lời chúc tương ứng. Có danh sách lời chúc bên dưới để luôn truy cập được.
-- Nút **Gửi ngàn yêu thương** gom các hạt sao thành trái tim có chiều sâu; bấm lại để trở về ngân hà.
-- Sáu lời chúc, chuyển bằng nút mũi tên, phím trái/phải hoặc các chấm dưới thiệp. Esc hoặc bấm ngoài thiệp để đóng.
-- Nhạc ambient tự tạo bằng Web Audio, chỉ phát khi bấm **Bật nhạc**; không tải MP3 bên ngoài.
-- Tạm dừng chuyển động, đặt lại góc nhìn và chọn chất lượng Tự động / Nhẹ / Chi tiết.
-- Tự dừng vẽ khi tab bị ẩn hoặc cảnh nằm ngoài màn hình. Tôn trọng cài đặt giảm chuyển động của thiết bị.
-- Khi WebGL không hoạt động, tự chuyển sang ngân hà Canvas 2D với phép chiếu phối cảnh: vẫn xoay, thu phóng, kết thành trái tim và mở lời chúc. Chế độ dự phòng dùng 4.800–9.000 hạt để nhẹ hơn.
+## Có gì mới?
 
-## Các file
+- Giao diện đêm xanh, giấy thư màu kem, ánh vàng ấm; responsive từ điện thoại đến desktop.
+- Phong thư CSS 3D có chiều sâu, con dấu sáp, chuyển động nổi và parallax theo chuột. Mở thư có chuyển cảnh; ngân hà WebGL xoay và kết thành trái tim.
+- Hành trình đọc: lá thư → ba điều muốn nói → một lời hẹn. Có thể đọc mọi phần độc lập; không ép chơi trò chơi để xem lời nhắn.
+- Trình viết thư với tên người nhận/người gửi, thư tối đa 700 ký tự, ba lời nhắn 120 ký tự và lời hẹn 160 ký tự.
+- Năm gợi ý: mẹ, bà, chị/em gái, người thương, bạn bè. Khi đã viết nội dung, thay bằng gợi ý cần một thao tác xác nhận ngay trong form.
+- Ba sắc màu: nắng ấm, hồng thương, trăng xanh.
+- Tự lưu/khôi phục bản nháp trong localStorage, kể cả bản chưa viết xong. Xử lý khi bộ nhớ bị chặn hoặc đầy.
+- Link quà tặng độc lập. Người nhận mở được trên thiết bị khác, không cần tài khoản hay database.
+- Sao chép link, chia sẻ qua bảng chia sẻ hệ thống nếu được hỗ trợ, xem lại món quà và tải thiệp PNG đầy đủ nội dung.
+- Nhạc nền Web Audio chỉ bật sau thao tác của người dùng. Chuông nhỏ khi mở nội dung nếu nhạc đang bật.
+- Tạm dừng chuyển động, chọn mức chất lượng, tôn trọng reduced motion. Dừng render khi cảnh ngoài màn hình hoặc tab bị ẩn.
+- Thiết bị thiếu WebGL dùng Canvas 2D với phép chiếu phối cảnh; phần thư/form hoạt động ngay cả khi cả hai renderer thất bại.
 
-| File | Nội dung |
-| --- | --- |
-| `index.html` | Cấu trúc trang, metadata, các nút và hộp thoại lời chúc |
-| `css/styles.css` | Giao diện, typography, màu sắc, bố cục desktop/mobile |
-| `js/config.js` | Toàn bộ lời chúc, người nhận, bảng màu, số lượng sao |
-| `js/app.js` | Gắn giao diện với cảnh 3D, điều khiển thiệp và trạng thái |
-| `js/galaxy.js` | Cảnh Three.js, GPU shaders, ngân hà, trái tim và camera |
-| `js/galaxy-fallback.js` | Ngân hà dự phòng khi thiết bị không mở được WebGL |
-| `js/audio.js` | Giai điệu ambient, bật/tắt và tạm dừng âm thanh khi ẩn tab |
-| `vendor/three.module.min.js` | Three.js 0.170.0, lưu cùng web để không phụ thuộc CDN lúc chạy |
-| `vendor/OrbitControls.js` | Điều khiển camera, cùng phiên bản với Three.js |
-| `vendor/THREE-LICENSE.txt` | Giấy phép MIT của Three.js |
-| `.nojekyll` | GitHub Pages phục vụ các file tĩnh trực tiếp |
+Hiệu ứng có chiều sâu và phản hồi chuyển động/âm thanh; đây không phải màn hình 4D vật lý.
 
-## Chạy trên GitHub Pages
+## Chạy và cập nhật
 
-Repo này đã có GitHub Pages. Giữ `index.html`, `css`, `js`, `vendor` ở thư mục gốc. Các đường dẫn đều bắt đầu bằng `./` hoặc `../`, nên tương thích với đường dẫn dự án `/20-10/`.
-
-Với repo mới: vào **Settings → Pages → Deploy from a branch → main → / (root) → Save**. Không cần npm, build, database, API key hay GitHub Actions riêng. Xem tiến trình tại tab **Actions** của repo.
-
-Khi chỉnh sửa, commit/push lên nhánh xuất bản; Pages sẽ cập nhật. Nếu vẫn thấy bản cũ, tải lại trang hoặc dùng Ctrl+F5 trên máy tính.
-
-## Chạy trên máy
-
-Vì dùng ES modules, hãy mở bằng HTTP server, **không mở trực tiếp `file://index.html`**.
-
-Lựa chọn dễ nhất: mở thư mục bằng VS Code, dùng Live Server, bấm **Go Live**.
-
-Hoặc chạy trong thư mục dự án nếu đã cài Python:
+Đây là web tĩnh, **không có bước build**. Thư viện Three.js 0.170.0 được giữ trong `vendor`, không tải CDN lúc chạy. Font hệ thống hỗ trợ tiếng Việt; không có request font hoặc analytics bên ngoài.
 
 ```sh
 python -m http.server 8080
 ```
 
-Rồi mở `http://localhost:8080`. Không cần cài dependency Node để chạy web. Toàn bộ thư viện 3D nằm trong `vendor`; chỉ Google Fonts cần Internet. Nếu không tải được font, trình duyệt dùng font thay thế.
+Mở `http://localhost:8080`. Không mở trực tiếp bằng `file://` vì ES modules cần HTTP.
 
-## Chỉnh lời chúc
+GitHub Pages tiếp tục dùng nhánh `main`, thư mục gốc. Tất cả đường dẫn tương đối, phù hợp `/20-10/`. Commit mới sẽ kích hoạt Pages theo cấu hình sẵn có. `.nojekyll` và thư viện vendored của bản trước được giữ nguyên.
 
-Mở `js/config.js` và sửa `CONFIG.recipient`, `CONFIG.description`, `CONFIG.footer` và `CONFIG.wishes`.
+## Link quà và dữ liệu
 
-Một lời chúc có cấu trúc:
+Link có dạng `https://…/20-10/#gift=<base64url>`. Phần sau `#` chứa JSON UTF-8 đã mã hóa để vận chuyển, **không phải mã hóa bảo mật**. Ai có toàn bộ link đều đọc được món quà. Dữ liệu không được ghi lên GitHub hoặc cơ sở dữ liệu; máy chủ web không nhận phần fragment trong HTTP request. Khi dùng bảng chia sẻ hệ thống, ứng dụng bạn chọn sẽ nhận link.
 
-```js
-{
-  label: 'Bình an',
-  title: 'Một lòng thật bình yên',
-  body: 'Đoạn đầu.\n\nĐoạn thứ hai.',
-  closing: 'Lời kết ngắn.',
-  position: [5.9, 0.9, 2.7], // Tọa độ x, y, z của hotspot trong cảnh
-}
+Tên, lời nhắn và thư đều được gắn bằng `textContent`. Trình đọc giới hạn kích thước, kiểm tra phiên bản/schema và từ chối link lỗi. Điều hướng giữa các mục không làm mất fragment món quà. Một link đã tạo là bản chụp nội dung; chỉnh bản nháp phải tạo và gửi link mới.
+
+Bản nháp chỉ nằm trên trình duyệt hiện tại với khóa `20-10-letter-draft-v2`; không tự đồng bộ thiết bị. Xóa dữ liệu trình duyệt có thể xóa bản nháp, nhưng link đã lưu vẫn mở được. Thiệp PNG chứa đầy đủ thư, ba lời nhắn và lời hẹn; chiều cao ảnh tự tăng theo nội dung. Không đính kèm link dài lên ảnh.
+
+## Cấu trúc
+
+| File | Vai trò |
+| --- | --- |
+| `index.html` | Giao diện, hành trình đọc, các dialog và form |
+| `css/styles.css` | Responsive, phong thư 3D, chuyển cảnh, màu sắc |
+| `js/app.js` | Tương tác, trạng thái món quà, lưu nháp, chia sẻ, fallback |
+| `js/gift.js` | Mẫu thư, giới hạn dữ liệu, kiểm tra và mã hóa link |
+| `js/postcard.js` | Vẽ thiệp PNG bằng Canvas, wrap chữ theo chiều rộng thực |
+| `js/config.js` | Mật độ, màu ngân hà, các hotspot |
+| `js/galaxy.js` | Three.js/WebGL và shader ngân hà → trái tim |
+| `js/galaxy-fallback.js` | Renderer dự phòng Canvas 2D |
+| `js/audio.js` | Âm thanh ambient theo thao tác người dùng |
+| `tests/gift.test.mjs` | Kiểm tra link UTF-8, schema, giới hạn và đường dẫn |
+
+## Kiểm tra
+
+Với Node.js 22+:
+
+```sh
+node --test tests/gift.test.mjs
 ```
 
-Thêm hoặc bớt phần tử trong `wishes` sẽ tự cập nhật các nút, số thứ tự và điều hướng. Lời chúc cuối cùng được mở khi bấm nút chính. Nội dung được đưa vào bằng `textContent`, không cần viết HTML trong lời chúc.
+Kiểm tra thủ công trước khi xuất bản:
 
-## Chỉnh hiệu ứng và màu
+1. Desktop và mobile: không tràn ngang, các nút chạm được, đọc được tiếng Việt.
+2. Mở lá thư, ba ngôi sao, lời hẹn; Esc và nút đóng trả focus hợp lý.
+3. Tạo quà có tiếng Việt/emoji, xem trước; mở link ở cửa sổ riêng.
+4. Bấm điều hướng đến các mục trong link nhận quà: nội dung cá nhân vẫn giữ nguyên.
+5. Tải PNG, kiểm tra cả nội dung dài và tên dài không bị cắt.
+6. Tải lại trang soạn dở: bản nháp còn nguyên. Lỗi localStorage/clipboard không khóa luồng.
+7. Bật reduced motion, dừng chuyển động; chặn WebGL để kiểm tra fallback.
+8. Nhạc không tự phát; tắt/mở nhạc, chuyển tab và quay lại.
 
-Trong `CONFIG.galaxy`:
+## Giấy phép thư viện
 
-| Cấu hình | Ý nghĩa |
-| --- | --- |
-| `seed` | Cố định phân bố sao, đổi giá trị để có cách rải sao khác |
-| `radius` | Bán kính ngân hà; mặc định 11 |
-| `arms` | Số cánh xoắn; mặc định 5 |
-| `spin` | Độ xoắn của các cánh; mặc định 0.58 |
-| `colors` | Màu chuyển dần từ tâm đến rìa |
-| `quality.low` | 13.000 sao + 1.800 hạt bụi + 650 sao nền, giới hạn 30 FPS, pixel ratio tối đa 1 |
-| `quality.high` | 42.000 sao + 6.000 hạt bụi + 1.600 sao nền, giới hạn 60 FPS, pixel ratio tối đa 1.6 |
-
-Chế độ Tự động chọn mức nhẹ trên màn hình nhỏ hoặc thiết bị báo ít luồng xử lý; nếu tốc độ vẽ thấp, nó giảm pixel ratio. Đây là giới hạn mục tiêu, không phải cam kết FPS trên mọi thiết bị.
-
-Màu giao diện nằm ở các biến `:root` đầu `css/styles.css`. Shader lấp lánh, tốc độ quay và hình trái tim nằm trong `js/galaxy.js`. Tăng mật độ sao quá cao có thể làm nóng máy; tăng chất lượng cần cân nhắc cả GPU và kích thước màn hình.
-
-## Bàn phím và khả năng truy cập
-
-- Tab/Shift+Tab để di chuyển qua các nút. Enter/Space để mở lời chúc.
-- Khi canvas có focus: phím mũi tên xoay, `+`/`-` thu phóng, `R` đặt lại góc nhìn.
-- Hộp thoại dùng phần tử `<dialog>` với focus mặc định, Esc để đóng và trả focus về nút đã mở.
-- Cài đặt `prefers-reduced-motion` mặc định dừng chuyển động tự động và bỏ chuyển cảnh kéo dài.
-- Có nút dừng hiệu ứng; không cần âm thanh để đọc hay thao tác.
-
-## Nguồn kỹ thuật đã tham khảo
-
-Mã giao diện, thuật toán rải sao, shader tùy biến, nội dung và giai điệu được viết cho dự án này. Thư viện vendored giữ nguyên giấy phép của tác giả.
-
-- [Three.js Points](https://threejs.org/docs/pages/Points.html): dựng đám mây hạt sao.
-- [Three.js BufferGeometry](https://threejs.org/docs/pages/BufferGeometry.html): lưu vị trí, màu và thuộc tính hạt trong buffer trên GPU.
-- [Three.js ShaderMaterial](https://threejs.org/docs/pages/ShaderMaterial.html): chuyển động và nội suy ngân hà → trái tim bằng shader.
-- [Three.js OrbitControls](https://threejs.org/docs/pages/OrbitControls.html): xoay/thu phóng với chuột và cảm ứng.
-- [MDN WebGL best practices](https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API/WebGL_best_practices): gom draw calls, giới hạn pixel ratio, giải phóng tài nguyên và xử lý context loss.
-- [GitHub Pages — publishing source](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site): phục vụ web tĩnh từ nhánh.
-- Thư viện khóa ở **Three.js 0.170.0**; các file lấy từ [npm package chính thức](https://www.npmjs.com/package/three/v/0.170.0). Tài liệu trực tuyến có thể mô tả phiên bản mới hơn.
-
-Đây là ngân hà nghệ thuật dành cho thiệp chúc mừng, không phải mô phỏng thiên văn theo tỷ lệ thực.
+Three.js và OrbitControls: MIT, giữ nguyên `vendor/THREE-LICENSE.txt`. Mã giao diện, nội dung mẫu, thuật toán hình ảnh thiệp và âm thanh được viết cho dự án này. Ngân hà là hình ảnh nghệ thuật, không phải mô phỏng thiên văn theo tỷ lệ thực.

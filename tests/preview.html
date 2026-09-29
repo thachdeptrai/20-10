@@ -1,0 +1,9 @@
+<!doctype html>
+<html lang="vi"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>20.10 · Kiểm tra responsive</title>
+<style>body{margin:0;background:#202728;color:#eee;font:14px Arial}header{padding:16px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}select,button{font:inherit;padding:8px}main{padding:15px;overflow:auto}iframe{display:block;border:1px solid #888;background:#07151b;margin:0 auto;width:390px;height:844px;max-width:none}output{color:#e4c48f;font-size:12px}</style>
+<header><b>20.10 · Responsive QA</b><label>Kích thước <select id="size"><option value="390,844">Điện thoại 390 × 844</option><option value="320,740">Điện thoại nhỏ 320 × 740</option><option value="768,1024">Tablet 768 × 1024</option><option value="1440,960">Desktop 1440 × 960</option></select></label><button id="inspect" type="button">Kiểm tra bố cục</button><output id="result" aria-live="polite"></output></header><main><iframe id="preview" title="Bản xem thử responsive" src="../"></iframe></main>
+<script>
+const frame=document.getElementById('preview');
+document.getElementById('size').addEventListener('change',e=>{const [w,h]=e.target.value.split(',');frame.style.width=w+'px';frame.style.height=h+'px';document.getElementById('result').textContent='';});
+document.getElementById('inspect').addEventListener('click',()=>{const d=frame.contentDocument,w=frame.contentWindow.innerWidth;document.getElementById('result').textContent=`Viewport ${w}px · Nội dung ${d.documentElement.scrollWidth}px · ${d.documentElement.scrollWidth>w?'TRÀN NGANG':'Không tràn ngang'} · Renderer: ${d.body.dataset.renderer||'đang tải'} · ${d.querySelectorAll('.memory-card').length}/3 thẻ lời nhắn`;});
+</script></html>
