@@ -1,0 +1,81 @@
+/* 20.10 V3 — After The Letter. Additive overrides only; V2 stylesheet remains intact. */
+:root{--v3-glow:.18;--v3-scene:1;--v3-fog:0;--v3-soft:#e4c48f}
+body{background:var(--bg);min-height:100dvh}
+body[data-theme=gold]{--accent:#e4c48f;--v3-soft:#e4c48f;--v3-fog:0}
+body[data-theme=rose]{--accent:#cf8f99;--v3-soft:#d9a3a9;--bg:#140f16;--panel:#21171e;--v3-fog:.08}
+body[data-theme=blue]{--accent:#b8d8ee;--v3-soft:#b8d8ee;--bg:#07111f;--panel:#0b1b2c;--v3-fog:.14}
+body[data-theme=rose] .page-atmosphere{background:radial-gradient(ellipse at 78% 20%,#6f30412b,transparent 38%),radial-gradient(ellipse at 8% 62%,#54303a22,transparent 36%)}
+body[data-theme=blue] .page-atmosphere{background:radial-gradient(ellipse at 78% 18%,#4d7aa52b,transparent 35%),radial-gradient(ellipse at 10% 68%,#345e7d25,transparent 42%)}
+body[data-theme=blue] .page-atmosphere::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 78% 15%,#e4f4ff13 0 8%,transparent 30%),linear-gradient(180deg,transparent,#8bb8d20b 58%,transparent);filter:blur(24px);opacity:.9}
+body[data-theme=rose] .memory-card{background:radial-gradient(ellipse at 84% 0,#7f40502e,transparent 72%),#21171e9a}
+body[data-theme=blue] .memory-card{background:radial-gradient(ellipse at 84% 0,#355d7834,transparent 72%),#0b1b2c94}
+
+/* Intro — only shown for received gift links. */
+.intro-screen{position:fixed;inset:0;z-index:140;display:grid;place-items:center;background:#03090df7;overflow:hidden;transition:opacity .45s ease,visibility .45s ease}
+.intro-screen[hidden]{display:none!important}.intro-screen.is-leaving{opacity:0;visibility:hidden}
+.intro-copy{position:relative;z-index:2;text-align:center;transform:translateY(-2vh)}
+.intro-copy>span{display:block;color:var(--accent);font:500 11px/1 var(--sans);letter-spacing:.38em;margin-bottom:25px}
+.intro-copy p{font:400 clamp(31px,5vw,58px)/1.2 var(--serif);letter-spacing:-.035em;margin:0;color:#f4f0e7}
+.intro-copy button{margin-top:30px;border:1px solid #ffffff27;background:#ffffff08;color:#d9dedb;border-radius:99px;padding:10px 20px;font-size:11px;letter-spacing:.06em}
+.intro-copy button:hover,.intro-copy button:focus-visible{border-color:var(--accent);color:var(--accent)}
+.intro-particles i{position:absolute;width:3px;height:3px;border-radius:50%;background:var(--accent);box-shadow:0 0 18px var(--accent);animation:intro-float 5s ease-in-out infinite}
+.intro-particles i:nth-child(1){left:19%;top:31%;animation-delay:-1s}.intro-particles i:nth-child(2){left:72%;top:24%;animation-delay:-3s}.intro-particles i:nth-child(3){left:81%;top:68%;animation-delay:-2s}.intro-particles i:nth-child(4){left:32%;top:73%;animation-delay:-4s}.intro-particles i:nth-child(5){left:55%;top:16%;animation-delay:-.5s}
+@keyframes intro-float{50%{transform:translate3d(0,-18px,0) scale(1.35);opacity:.45}}
+
+/* Copy + hierarchy refinement */
+.hero-description{max-width:430px}.hero-footnote{font-style:normal;letter-spacing:.01em}.orbital-label{letter-spacing:.34em;opacity:.75}.envelope-caption{text-transform:uppercase;font:600 8px/1 var(--sans);letter-spacing:.22em}
+.promise-continue{margin-top:25px;min-height:44px}.promise-continue.is-ready{border-color:color-mix(in srgb,var(--accent) 58%,transparent);box-shadow:0 0 36px color-mix(in srgb,var(--accent) 12%,transparent)}
+.constellation-step{display:flex;flex-direction:column;align-items:center;gap:16px}.constellation-step .memory-hint{margin:24px 0 0}.constellation-step .button{min-height:42px;padding:9px 18px}
+
+/* Galaxy progress: visual progress only, no XP/badges. */
+.hero-art .universe{opacity:calc(.58 + var(--v3-scene)*.28);filter:saturate(calc(.72 + var(--v3-scene)*.28)) brightness(calc(.72 + var(--v3-scene)*.25));transition:opacity .8s ease,filter .8s ease}
+.hero-art[data-progress="0"]{--v3-scene:.18;--v3-glow:.07}.hero-art[data-progress="1"]{--v3-scene:.46;--v3-glow:.12}.hero-art[data-progress="2"]{--v3-scene:.72;--v3-glow:.19}.hero-art[data-progress="3"]{--v3-scene:1;--v3-glow:.28}
+.hero-art::before{content:"";position:absolute;inset:13% 4% 15%;border-radius:50%;pointer-events:none;z-index:1;background:radial-gradient(circle at 32% 40%,color-mix(in srgb,var(--accent) calc(var(--v3-glow)*100%),transparent),transparent 22%),radial-gradient(circle at 70% 35%,color-mix(in srgb,var(--accent) calc(var(--v3-glow)*75%),transparent),transparent 24%),radial-gradient(circle at 60% 72%,color-mix(in srgb,var(--accent) calc(var(--v3-glow)*80%),transparent),transparent 25%);filter:blur(18px);transition:opacity .8s ease;opacity:calc(.35 + var(--v3-scene)*.65)}
+.star-node{transition:opacity .35s ease,background .35s ease,box-shadow .35s ease,transform .2s ease}.star-node.is-read{background:#16312eaa;box-shadow:0 0 24px color-mix(in srgb,var(--accent) 16%,transparent)}.star-node.is-read .star-point{box-shadow:0 0 18px 5px color-mix(in srgb,var(--accent) 48%,transparent)}
+.constellation{position:absolute;inset:8% 6% 12%;width:88%;height:80%;z-index:1;pointer-events:none;overflow:visible;opacity:0;transition:opacity .65s ease}
+.constellation path{fill:none;stroke:color-mix(in srgb,var(--accent) 74%,white);stroke-width:.24;stroke-dasharray:120;stroke-dashoffset:120;filter:drop-shadow(0 0 4px var(--accent))}.constellation circle{fill:#fff;filter:drop-shadow(0 0 6px var(--accent));opacity:0}
+.constellation.is-ready{opacity:.7}.constellation.is-ready path{animation:constellation-draw 1.35s ease forwards}.constellation.is-ready circle{animation:constellation-star .35s ease forwards .95s}
+@keyframes constellation-draw{to{stroke-dashoffset:0}}@keyframes constellation-star{to{opacity:1}}
+
+/* Theme atmosphere differs beyond accent. */
+body[data-theme=rose] .orbital-rings{opacity:.55;filter:blur(.2px)}
+body[data-theme=rose] .universe::after{background:linear-gradient(90deg,var(--bg),transparent 17%,transparent 87%,var(--bg)),radial-gradient(ellipse at center,#6f394322,transparent 55%)}
+body[data-theme=blue] .orbital-rings{opacity:.6;filter:drop-shadow(0 0 18px #7fb4d51d)}
+body[data-theme=blue] .universe::after{background:linear-gradient(90deg,var(--bg),transparent 16%,transparent 88%,var(--bg)),radial-gradient(ellipse at 74% 24%,#cbeaff16,transparent 23%),linear-gradient(0deg,var(--bg),transparent 20%,transparent 80%,var(--bg))}
+
+/* Composer V3 fields. */
+.notes-fieldset label{padding-block:14px}.notes-fieldset label>input+input{margin-top:7px;background:#ffffff03}.notes-fieldset label>span{display:block;color:var(--accent);font-size:9px;letter-spacing:.11em;margin-bottom:2px}.field-help{gap:18px}.qr-panel{margin-top:28px;padding-top:26px;border-top:1px solid var(--line);display:grid;grid-template-columns:260px 1fr;gap:24px;align-items:center}.qr-panel .eyebrow{margin-bottom:10px}.qr-code{width:252px;min-height:252px;background:#fff;border-radius:8px;padding:6px;display:grid;place-items:center;color:#29302f;font-size:11px;text-align:center}.qr-code canvas,.qr-code img{max-width:240px!important;max-height:240px!important;width:240px!important;height:240px!important}.qr-actions{display:flex;flex-direction:column;align-items:flex-start;gap:10px}.qr-actions .button{min-width:170px}.qr-status{font-size:10px;color:var(--muted);margin:8px 0 0;line-height:1.6}
+
+/* Final cinematic overlay. */
+body.final-cinematic .site-header,body.final-cinematic .hero-copy,body.final-cinematic .journey-strip,body.final-cinematic .floating-note,body.final-cinematic .scene-bottom{opacity:.14;transition:opacity .65s ease}
+body.final-cinematic .star-labels{opacity:0;transition:opacity .45s ease}body.final-cinematic .constellation{opacity:1}
+.hero-art.story-ending .universe{opacity:1;filter:saturate(1.08) brightness(1.08)}
+.final-scene{position:fixed;inset:0;z-index:130;display:grid;place-items:center;padding:28px;background:radial-gradient(circle at 50% 45%,#142c3029,transparent 34%),#03080bc9;backdrop-filter:blur(8px);opacity:0;transition:opacity .65s ease}.final-scene[hidden]{display:none!important}.final-scene.is-visible{opacity:1}
+.final-content{text-align:center;max-width:700px;transform:translateY(16px);opacity:0;transition:transform .75s ease,opacity .75s ease}.final-scene.is-visible .final-content{transform:none;opacity:1}
+.final-kicker{font-size:9px;letter-spacing:.34em;color:var(--accent)}.final-content h2{font-size:clamp(54px,9vw,104px);margin:15px 0 12px;color:#f5f1e6;overflow-wrap:anywhere}.final-content p{font:400 clamp(20px,3vw,31px)/1.65 var(--serif);color:#d7ddd5;margin:0 auto 20px;max-width:620px;white-space:pre-wrap}.final-content strong{display:block;font:italic 18px/1.5 var(--serif);color:var(--accent);font-weight:400}.final-actions{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:10px 14px;margin-top:34px}.final-actions .text-button{padding-inline:12px}
+
+/* Micro interactions. */
+@media (hover:hover) and (pointer:fine){.button:not(:disabled){will-change:transform}.memory-card{transform-style:preserve-3d}.memory-card:hover{box-shadow:0 20px 55px #0000002b}.star-node:hover{box-shadow:0 0 24px color-mix(in srgb,var(--accent) 20%,transparent)}}
+.click-spark{position:absolute;width:7px;height:7px;border:1px solid var(--accent);border-radius:50%;z-index:9;pointer-events:none;animation:click-spark .65s ease-out forwards;box-shadow:0 0 15px var(--accent)}@keyframes click-spark{to{transform:translate(-50%,-50%) scale(8);opacity:0}}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}.reveal.is-visible{opacity:1;transform:none}
+
+/* Mobile-first guardrails for V3 additions. */
+@media (max-width:760px){
+  .intro-copy{padding:0 24px}.intro-copy p{font-size:36px}
+  .constellation{inset:10% 4% 15%;width:92%;height:75%}
+  .promise-continue{width:100%;margin-top:20px}
+  .qr-panel{grid-template-columns:1fr;justify-items:center}.qr-actions{width:100%;align-items:stretch}.qr-actions .button{width:100%}
+  .final-scene{padding:20px}.final-content h2{font-size:58px}.final-content p{font-size:21px}.final-actions{flex-direction:column}.final-actions .button,.final-actions .text-button{width:min(320px,100%)}
+  .notes-fieldset label>input{font-size:16px}
+  .hero-art::before{inset:18% 0 20%}
+}
+@media (max-width:430px){.qr-code{width:232px;min-height:232px}.qr-code canvas,.qr-code img{width:220px!important;height:220px!important}.final-content h2{font-size:50px}.final-content p{font-size:19px}.intro-copy p{font-size:32px}}
+@media (max-width:360px){.intro-copy p{font-size:29px}.final-scene{padding:15px}.final-content h2{font-size:43px}.qr-panel{margin-inline:-4px}.constellation-step .button{width:100%}}
+@media (max-width:320px){.intro-copy{padding:0 16px}.intro-copy p{font-size:27px}.final-content p{font-size:17px}.final-actions{margin-top:25px}}
+
+/* Respect accessibility preference. No forced cinematic wait. */
+@media (prefers-reduced-motion:reduce){
+  .intro-particles i,.constellation.is-ready path,.constellation.is-ready circle,.click-spark{animation:none!important}
+  .intro-screen,.final-scene,.final-content,.hero-art .universe,.star-node,.reveal{transition:none!important}
+  .reveal{opacity:1;transform:none}.constellation.is-ready path{stroke-dashoffset:0}.constellation.is-ready circle{opacity:1}
+}
