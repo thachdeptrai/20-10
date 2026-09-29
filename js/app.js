@@ -1,7 +1,7 @@
 import { CONFIG } from './config.js?v=2.0.1';
 import { AmbientAudio } from './audio.js?v=2.0.1';
 import { SAMPLE, TEMPLATES, NOTE_TITLES, NOTE_LABELS, NOTE_TEASERS, THEMES, encodeGift, decodeGift, validateGift, giftLink } from './gift.js?v=2.0.1';
-import { downloadPostcard } from './postcard.js?v=2.0.1';
+import { downloadPostcard } from './postcard.js?v=2.0.2';
 
 const $=id=>document.getElementById(id);
 const audio=new AmbientAudio();
