@@ -210,13 +210,16 @@ $('finale-download').addEventListener('click',e=>download(gift,e.currentTarget))
 
 async function drawQr(){
   if(!preparedGift)preparedGift=gift;
-  const lib=window.QRCode;if(!lib?.toCanvas)throw new Error('QR library unavailable');
+  const lib=window.QRCode;if(typeof lib!=='function')throw new Error('QR library unavailable');
   const link=$('share-link').value||giftLink(preparedGift);
-  await lib.toCanvas($('qr-canvas'),link,{width:320,margin:3,errorCorrectionLevel:'M',color:{dark:'#101010',light:'#ffffff'}});
+  const target=$('qr-canvas');target.replaceChildren();
+  new lib(target,{text:link,width:320,height:320,colorDark:'#382630',colorLight:'#ffffff',correctLevel:lib.CorrectLevel.M});
+  const canvas=target.querySelector('canvas');if(!canvas)throw new Error('QR canvas unavailable');
+  return canvas;
 }
 $('show-qr').addEventListener('click',async()=>{try{await drawQr();openDialog($('qr-dialog'));}catch{notify('Chưa tạo được QR. Bạn vẫn có thể dùng link món quà.');}});
-$('download-qr').addEventListener('click',async()=>{try{await drawQr();const a=document.createElement('a');a.download='20-10-qr.png';a.href=$('qr-canvas').toDataURL('image/png');a.click();}catch{notify('Chưa tải được QR.');}});
-$('download-qr-card').addEventListener('click',async()=>{try{await drawQr();const c=document.createElement('canvas');c.width=900;c.height=1120;const x=c.getContext('2d');x.fillStyle='#fff6f8';x.fillRect(0,0,c.width,c.height);x.fillStyle='#c26583';x.font='46px Georgia';x.textAlign='center';x.fillText('20.10',450,110);x.fillStyle='#654b56';x.font='34px Arial';x.fillText('Một lời nhắn dành cho '+(preparedGift?.to||gift.to),450,180);x.fillStyle='#fff';x.fillRect(245,260,410,410);x.drawImage($('qr-canvas'),275,290,350,350);x.fillStyle='#745b66';x.font='26px Arial';x.fillText('Quét để mở',450,745);x.font='20px Arial';x.fillStyle='#9c7181';x.fillText('20.10 · After The Letter',450,1030);const a=document.createElement('a');a.download='20-10-qr-card.png';a.href=c.toDataURL('image/png');a.click();}catch{notify('Chưa tải được card QR.');}});
+$('download-qr').addEventListener('click',async()=>{try{const qr=await drawQr();const a=document.createElement('a');a.download='20-10-qr.png';a.href=qr.toDataURL('image/png');a.click();}catch{notify('Chưa tải được QR.');}});
+$('download-qr-card').addEventListener('click',async()=>{try{const qr=await drawQr();const c=document.createElement('canvas');c.width=900;c.height=1120;const x=c.getContext('2d');x.fillStyle='#fff6f8';x.fillRect(0,0,c.width,c.height);x.fillStyle='#c26583';x.font='46px Georgia';x.textAlign='center';x.fillText('20.10',450,110);x.fillStyle='#654b56';x.font='34px Arial';x.fillText('Một lời nhắn dành cho '+(preparedGift?.to||gift.to),450,180);x.fillStyle='#fff';x.fillRect(245,260,410,410);x.drawImage(qr,275,290,350,350);x.fillStyle='#745b66';x.font='26px Arial';x.fillText('Quét để mở',450,745);x.font='20px Arial';x.fillStyle='#9c7181';x.fillText('20.10 · After The Letter',450,1030);const a=document.createElement('a');a.download='20-10-qr-card.png';a.href=c.toDataURL('image/png');a.click();}catch{notify('Chưa tải được card QR.');}});
 
 let fallbackPromise=null;
 async function useFallback(){
