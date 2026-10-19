@@ -24,7 +24,7 @@ const vertexShader = `
     vec4 viewPosition = modelViewMatrix * vec4(p, 1.0);
     gl_Position = projectionMatrix * viewPosition;
     gl_PointSize = clamp(aSize * uSize * uPixelRatio * 90.0 / max(1.0, -viewPosition.z), 1.0, 64.0);
-    vec3 heartColor = mix(vec3(0.78,0.12,0.30),vec3(1.0,0.38,0.55),aPhase/6.283);
+    vec3 heartColor = mix(vec3(0.95,0.015,0.055),vec3(1.0,0.12,0.20),aPhase/6.283);
     vColor = mix(color, heartColor, uMorph);
     vTwinkle = 0.75 + 0.25 * sin(uTime * 1.1 + aPhase);
   }
@@ -131,6 +131,7 @@ export class Galaxy {
         color.copy(palette[Math.floor(t)]).lerp(palette[Math.min(palette.length-1, Math.floor(t)+1)], t%1);
         if (random() > 0.9) color.lerp(new THREE.Color('#ffffff'), 0.7);
         sizes[i] = type === 'dust' ? 4 + random()*8 : 0.3 + Math.pow(random(), 3)*1.35;
+        if (type === 'stars' && random() > 0.76) sizes[i] *= 1.9;
       }
       color.toArray(colors, j); phases[i] = random() * Math.PI * 2;
       // Trái tim là một đám mây có chiều dày, không phải ảnh nền.
@@ -152,7 +153,7 @@ export class Galaxy {
       uniforms: {
         uTime: { value: this.time }, uMorph: { value: 0 }, uPixelRatio: { value: this.pixelRatio },
         uSize: { value: 1 }, uRotate: { value: type === 'background' ? 0.025 : 1 },
-        uOpacity: { value: type === 'dust' ? 0.14 : type === 'background' ? 0.85 : 1.05 },
+      uOpacity: { value: type === 'dust' ? 0.14 : type === 'background' ? 0.85 : type === 'stars' ? 1.45 : 1.05 },
         uDust: { value: type === 'dust' ? 1 : 0 },
       },
     });

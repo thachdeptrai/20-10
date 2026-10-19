@@ -113,12 +113,13 @@ export class Galaxy {
     const progressGlow=0.76+(this.progress||0)*0.08;
     for(const p of this.background){ctx.globalAlpha=(0.25+0.2*Math.sin(this.time+p.phase))*progressGlow;ctx.fillRect(p.x*this.width,p.y*this.height,p.size,p.size);}
     this.points.forEach((points,color) => {
-      ctx.fillStyle=m>0.5?'#c93668':this.config.colors[color];
+      ctx.fillStyle=m>0.5?'#f00028':this.config.colors[color];
       for(const p of points) {
         const angle=this.time*0.14/(1+p.r*0.24),c=Math.cos(angle),s=Math.sin(angle);
         const projected=this.project((p.x*c-p.z*s)*(1-m)+p.hx*m,p.y*(1-m)+p.hy*m,(p.x*s+p.z*c)*(1-m)+p.hz*m);
-        const size=clamp(p.size*projected.scale/25,0.45,3.2);
-        ctx.globalAlpha=0.55+0.3*Math.sin(this.time*1.1+p.phase);
+        let size=clamp(p.size*projected.scale/25,0.45,3.2);
+        if(m>0.5 && p.size>1.05) size=Math.min(4.2,size*1.55);
+        ctx.globalAlpha=(m>0.5?0.9:0.55)+0.3*Math.sin(this.time*1.1+p.phase);
         ctx.fillRect(projected.x,projected.y,size,size);
         if(p.glow){ctx.globalAlpha=0.32;const d=size*13;ctx.drawImage(this.sprites[color],projected.x-d/2,projected.y-d/2,d,d);}
       }
