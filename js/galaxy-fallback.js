@@ -118,8 +118,8 @@ export class Galaxy {
         const angle=this.time*0.14/(1+p.r*0.24),c=Math.cos(angle),s=Math.sin(angle);
         const projected=this.project((p.x*c-p.z*s)*(1-m)+p.hx*m,p.y*(1-m)+p.hy*m,(p.x*s+p.z*c)*(1-m)+p.hz*m);
         let size=clamp(p.size*projected.scale/25,0.45,3.2);
-        if(m>0.5 && p.size>1.05) size=Math.min(4.2,size*1.55);
-        ctx.globalAlpha=(m>0.5?0.9:0.55)+0.3*Math.sin(this.time*1.1+p.phase);
+        if(m>0.5) size=Math.min(4.8,size*(p.size>1.05?2.1:1.5));
+        ctx.globalAlpha=(m>0.5?0.96:0.55)+0.3*Math.sin(this.time*1.1+p.phase);
         ctx.fillRect(projected.x,projected.y,size,size);
         if(p.glow){ctx.globalAlpha=0.32;const d=size*13;ctx.drawImage(this.sprites[color],projected.x-d/2,projected.y-d/2,d,d);}
       }

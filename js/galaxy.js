@@ -131,7 +131,10 @@ export class Galaxy {
         color.copy(palette[Math.floor(t)]).lerp(palette[Math.min(palette.length-1, Math.floor(t)+1)], t%1);
         if (random() > 0.9) color.lerp(new THREE.Color('#ffffff'), 0.7);
         sizes[i] = type === 'dust' ? 4 + random()*8 : 0.3 + Math.pow(random(), 3)*1.35;
-        if (type === 'stars' && random() > 0.76) sizes[i] *= 1.9;
+        if (type === 'stars') {
+          sizes[i] *= random() > 0.88 ? 2.2 : 1.22;
+          if (random() > 0.9) color.set('#fff0f2').toArray(colors, j);
+        }
       }
       color.toArray(colors, j); phases[i] = random() * Math.PI * 2;
       // Trái tim là một đám mây có chiều dày, không phải ảnh nền.
@@ -153,7 +156,7 @@ export class Galaxy {
       uniforms: {
         uTime: { value: this.time }, uMorph: { value: 0 }, uPixelRatio: { value: this.pixelRatio },
         uSize: { value: 1 }, uRotate: { value: type === 'background' ? 0.025 : 1 },
-      uOpacity: { value: type === 'dust' ? 0.14 : type === 'background' ? 0.85 : type === 'stars' ? 1.45 : 1.05 },
+        uOpacity: { value: type === 'dust' ? 0.14 : type === 'background' ? 0.85 : type === 'stars' ? 1.7 : 1.05 },
         uDust: { value: type === 'dust' ? 1 : 0 },
       },
     });
