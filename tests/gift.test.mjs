@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { SAMPLE, TEMPLATES, DEFAULT_STAR_TITLES, validateGift, encodeGift, decodeGift, giftLink, LIMITS } from '../js/gift.js';
+import { SAMPLE, TEMPLATES, DEFAULT_STAR_TITLES, validateGift, encodeGift, decodeGift, decodeCompactGift, compactGiftLink, giftLink, LIMITS } from '../js/gift.js';
 
 test('Vietnamese, emoji, punctuation and newlines round-trip in a V3 gift link',()=>{
   const gift={...SAMPLE,to:'Mẹ Thủy & chị Ánh 💛',message:'Cảm ơn mẹ!\n\nĐiều ước: bình yên <3 🌷',starTitles:['Chuyện thứ nhất','Có điều này','Và thêm một chuyện nữa'],finalMessage:'Vậy thôi 😄 Giữ sức khỏe nhé.'};
@@ -34,6 +34,13 @@ test('unknown versions, themes, types and malformed data fail closed',()=>{
 test('link remains on the GitHub Pages subpath and removes unrelated query data',()=>{
   const url=new URL(giftLink(SAMPLE,'https://thachdeptrai.github.io/20-10/?utm_source=old#keepsakes'));
   assert.equal(url.origin,'https://thachdeptrai.github.io');assert.equal(url.pathname,'/20-10/');assert.equal(url.search,'');assert.deepEqual(decodeGift(url.hash.slice(6)),SAMPLE);
+});
+
+test('compact QR link compresses gift data and opens the same gift',async()=>{
+  const base='https://thachdeptrai.github.io/20-10/?utm_source=old#keepsakes';
+  const compact=await compactGiftLink(SAMPLE,base),url=new URL(compact);
+  assert.equal(url.pathname,'/20-10/');assert.equal(url.search,'');assert.ok(compact.length<giftLink(SAMPLE,base).length);
+  assert.deepEqual(await decodeCompactGift(url.hash.slice(7)),SAMPLE);
 });
 test('markup remains literal data and extra keys are not carried into the gift',()=>{
   const gift=decodeGift(encodeGift({...SAMPLE,to:'<img src=x onerror=alert(1)>',extra:'discard'}));

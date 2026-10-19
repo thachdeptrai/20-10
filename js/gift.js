@@ -52,3 +52,37 @@ export function decodeGift(encoded) {
 export function giftLink(gift, base = location.href) {
   const url = new URL(base); url.hash = 'gift=' + encodeGift(gift); url.search = ''; return url.href;
 }
+function base64Url(bytes) {
+  let binary='';for(const byte of bytes)binary+=String.fromCharCode(byte);
+  return btoa(binary).replaceAll('+','-').replaceAll('/','_').replace(/=+$/,'');
+}
+function bytesFromBase64Url(encoded) {
+  if(typeof encoded!=='string'||encoded.length>MAX_ENCODED_LENGTH||!/^[A-Za-z0-9_-]+$/.test(encoded))throw new Error('Link món quà chưa đầy đủ hoặc không hợp lệ.');
+  const binary=atob(encoded.replaceAll('-','+').replaceAll('_','/'));
+  return Uint8Array.from(binary,char=>char.charCodeAt(0));
+}
+export async function compactGiftLink(gift, base = location.href) {
+  const url=new URL(base);url.search='';
+  try {
+    const value=validateGift(gift),theme={gold:'g',rose:'r',blue:'b'}[value.theme];
+    const packed=[value.to,value.from,theme,value.message,value.notes,value.starTitles,value.promise,value.finalMessage];
+    const input=new Blob([JSON.stringify(packed)]).stream();
+    const compressed=await new Response(input.pipeThrough(new CompressionStream('deflate-raw'))).arrayBuffer();
+    url.hash='giftz='+base64Url(new Uint8Array(compressed));
+  } catch { url.hash='gift='+encodeGift(gift); }
+  return url.href;
+}
+export async function decodeCompactGift(encoded) {
+  try {
+    const input=new Blob([bytesFromBase64Url(encoded)]).stream();
+    const reader=input.pipeThrough(new DecompressionStream('deflate-raw')).getReader(),chunks=[];let length=0;
+    while(true){const {done,value}=await reader.read();if(done)break;length+=value.length;if(length>12000){await reader.cancel();throw new Error('Gift data too large');}chunks.push(value);}
+    const bytes=new Uint8Array(length);let offset=0;for(const chunk of chunks){bytes.set(chunk,offset);offset+=chunk.length;}
+    const json=new TextDecoder('utf-8',{fatal:true}).decode(bytes);
+    const value=JSON.parse(json);
+    if(!Array.isArray(value))return validateGift(value);
+    if(value.length!==8)throw new Error('Invalid compact gift');
+    const theme={g:'gold',r:'rose',b:'blue'}[value[2]];
+    return validateGift({v:3,to:value[0],from:value[1],theme,message:value[3],notes:value[4],starTitles:value[5],promise:value[6],finalMessage:value[7]});
+  } catch { throw new Error('Chưa mở được món quà. Hãy kiểm tra link QR.'); }
+}
