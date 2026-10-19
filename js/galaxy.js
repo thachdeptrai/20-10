@@ -24,7 +24,8 @@ const vertexShader = `
     vec4 viewPosition = modelViewMatrix * vec4(p, 1.0);
     gl_Position = projectionMatrix * viewPosition;
     gl_PointSize = clamp(aSize * uSize * uPixelRatio * 90.0 / max(1.0, -viewPosition.z), 1.0, 64.0);
-    vColor = mix(color, mix(vec3(1.0,0.58,0.38),vec3(1.0,0.88,0.66),aPhase/6.283),uMorph*0.65);
+    vec3 heartColor = mix(vec3(0.78,0.12,0.30),vec3(1.0,0.38,0.55),aPhase/6.283);
+    vColor = mix(color, heartColor, uMorph);
     vTwinkle = 0.75 + 0.25 * sin(uTime * 1.1 + aPhase);
   }
 `;
