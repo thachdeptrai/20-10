@@ -109,7 +109,7 @@ export class Galaxy {
     this.cy=Math.cos(this.yaw); this.sy=Math.sin(this.yaw);
     this.cp=Math.cos(this.pitch*(1-m)); this.sp=Math.sin(this.pitch*(1-m));
     ctx.setTransform(this.dpr,0,0,this.dpr,0,0); ctx.clearRect(0,0,this.width,this.height);
-    ctx.globalCompositeOperation='lighter'; ctx.fillStyle='#dcd3ff';
+    ctx.globalCompositeOperation='lighter'; ctx.fillStyle='#f2c5d5';
     const progressGlow=0.76+(this.progress||0)*0.08;
     for(const p of this.background){ctx.globalAlpha=(0.25+0.2*Math.sin(this.time+p.phase))*progressGlow;ctx.fillRect(p.x*this.width,p.y*this.height,p.size,p.size);}
     this.points.forEach((points,color) => {

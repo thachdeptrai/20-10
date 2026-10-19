@@ -117,7 +117,7 @@ export class Galaxy {
         const a = random() * Math.PI * 2, z = random() * 2 - 1, r = 35 + random() * 24;
         positions[j] = Math.sqrt(1-z*z) * Math.cos(a) * r;
         positions[j+1] = z*r; positions[j+2] = Math.sqrt(1-z*z) * Math.sin(a) * r;
-        color.set(random() > 0.7 ? '#bea8ed' : '#c9d4e9');
+        color.set(random() > 0.7 ? '#e9aac0' : '#f0d5df');
         sizes[i] = 0.35 + random() * 1.1;
       } else {
         const r = Math.pow(random(), 0.68) * this.config.radius;
